@@ -8,6 +8,7 @@
     
     <link rel="shortcut icon" href="{% static 'images/zap-icon.ico' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/footer.css' %}">
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
     <script src='main.js'></script>
     <style type="text/css">
@@ -17,16 +18,21 @@
       .navbar{
         box-shadow: 0px 2px 5px #777;
       }
-      .form-control{
+      .search-size{
         width:1000px;
       }
       .dropdown:hover>.dropdown-menu{
           display:block;
       }
+      .btn-outline-success{
+        border-radius:50px;
+        padding-left:10px;
+        margin-left:10px;
+      }
     </style>
 </head>
-<body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+<body id="boddy">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light nav-tabs">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'store' %}"> <img id="brand" src="{% static 'images/zap.png' %}" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
@@ -37,29 +43,38 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>
+              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Category 1</a></li>
+                  <li><a class="dropdown-item" href="#">Category 2</a></li>
+                  <li><a class="dropdown-item" href="#">Category 3</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="#">View All</a></li>
                 </ul>
+              </li>
+              <li><a class="nav-link" aria-current="page" href="#">Exchange Zone</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
               </li>
               
             </ul>
             <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+            
+              <input class="form-control me-2 search-size" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg></button>
+              
             </form>
             <div class="form-inline my-2 my-lg-0 ml-auto">
-                
-                       <a href="#"class="btn btn-warning">Login</a>
+                  <a href="#"class="btn btn-primary add-btn" style="margin-right:10px;">Register</a>
+
+                       <a href="#"class="btn btn-success add-btn">Login</a>
                         
                        <a href="{% url 'cart' %}">
                          <img  id="cart-icon" src="{% static 'images/cart.png' %}">
@@ -81,4 +96,55 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+<footer>
+<footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p class="text-justify">ZAP is a web based application that will be very useful aid to everyone’s technological needs. Users who would like to exchange or sell any kind of devices can very easily find each other here. This is an e-commerce website with specialized in exchanging products among the users.</p>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="{% url 'store' %}">Home</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Link 3</a></li>
+              <li><a href="#">Link 4</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Our Team Members</h6>
+            <ul class="footer-links">
+              <li>Farhan Hasin Saad</li>
+              <li>Mahira Ibnath Joytu</li>
+              <li>Pratyay Roy Sarkar</li>
+              <li>Dipannita kar</li>
+              <li>Soumitra Kishore Das Choudhury</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+         <a href="#">ZAP</a>.
+            </p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" target="_blank" href="http://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="twitter" target="_blank" href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="dribbble" target="_blank" href="http://www.youtube.com/"><i class="fa fa-youtube"></i></a></li>  
+            </ul>
+          </div>
+        </div>
+      </div>
+</footer>
+</footer>
 </html>
