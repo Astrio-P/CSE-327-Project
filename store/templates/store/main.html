@@ -50,7 +50,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   {% for category in categorys %}
-                  <li><a class="dropdown-item" href="#"> {{category.name}}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'viewall' %}?category={{ category.name }}"> {{category.name}}</a></li>
                    {% endfor %}
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'viewall' %}">View All</a></li>
