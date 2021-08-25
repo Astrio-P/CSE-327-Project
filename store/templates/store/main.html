@@ -49,11 +49,11 @@
                   Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Category 1</a></li>
-                  <li><a class="dropdown-item" href="#">Category 2</a></li>
-                  <li><a class="dropdown-item" href="#">Category 3</a></li>
+                  {% for category in categorys %}
+                  <li><a class="dropdown-item" href="#"> {{category.name}}</a></li>
+                   {% endfor %}
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">View All</a></li>
+                  <li><a class="dropdown-item" href="{% url 'viewall' %}">View All</a></li>
                 </ul>
               </li>
               <li><a class="nav-link" aria-current="page" href="#">Exchange Zone</a>
