@@ -103,7 +103,13 @@ h1,h2,h3,h4,h5,h6{
 	background-color:"white";
 	 size:"30px";
 }
+.search-size{
+	width: fit-content;
+    height: fit-content;
+    position: relative;
+}
 .form-control{
+	border-radius:50px;
 	width: 250px;
 }
 #boddy{
