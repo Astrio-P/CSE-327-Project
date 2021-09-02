@@ -72,9 +72,9 @@
               
             </form>
             <div class="form-inline my-2 my-lg-0 ml-auto">
-                  <a href="#"class="btn btn-primary add-btn" style="margin-right:10px;">Register</a>
+                  <a href="{% url 'register' %}"class="btn btn-primary add-btn" style="margin-right:10px;">Register</a>
 
-                       <a href="#"class="btn btn-success add-btn">Login</a>
+                       <a href="{% url 'login' %}"class="btn btn-success add-btn">Login</a>
                         
                        <a href="{% url 'cart' %}">
                          <img  id="cart-icon" src="{% static 'images/cart.png' %}">
