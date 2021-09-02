@@ -53,7 +53,7 @@
     <div class="row">
         {% for product in products %}
         <div class="col-lg-4">
-            <div class="box-element product">
+            <div class="box-element product zoom">
                 <div style="text-align:center;"> User Rating <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -63,7 +63,7 @@
                 <img class="thumbnail" src="{{product.imageURL}}">
                 <hr>
                 <h6><strong> {{product.name}} </strong> <h6>
-                <hr>
+                
                 <h4 style="display:inline-block;float:left">{{product.price|floatformat:2}} &#2547;</h4>
                 <button data-product={{product.id}} data-action="add" style="display:inline-block;float:right" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
                 <a style="display:inline-block;float:right;margin-right:10px" class="btn btn-outline-success" href="#">View<a>

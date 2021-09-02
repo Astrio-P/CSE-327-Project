@@ -1,0 +1,43 @@
+{% extends 'store/main.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<title>Search Results: {{ query }}</title>
+</head>
+<body>
+    {% if query %}
+        <h1>You searched for: "{{ query }}"</h1>
+        <p>Total "{{ count }}" matches found.</p>
+    {% else %}
+        <h1>You didn't search for anything. </h1>
+    {% endif %}
+<div class="row">
+        
+        {% if products %}
+        {% for product in products %}
+            <div class="col-lg-4">
+                <div class="box-element product zoom">
+                    <div style="text-align:center;"> User Rating <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <img class="thumbnail" src="{{product.imageURL}}">
+                    <hr>
+                    <h6><strong> {{product.name}} </strong> <h6>
+                    
+                    <h4 style="display:inline-block;float:left">{{product.price|floatformat:2}} &#2547;</h4>
+                    <button data-product={{product.id}} data-action="add" style="display:inline-block;float:right" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+                    <a style="display:inline-block;float:right;margin-right:10px" class="btn btn-outline-success" href="#">View<a>
+                </div>
+             
+            </div>
+       {% endfor %}
+       {% else %}
+            <p> No products available </p>
+        {% endif %}
+    </div>
+</body>
+{% endblock content %}

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/footer.css' %}">
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     
     <style type="text/css">
       .navbar-brand img{
@@ -18,8 +20,26 @@
       .navbar{
         box-shadow: 0px 2px 5px #777;
       }
-      .search-size{
-        width:1000px;
+      .me-2.search-size{
+        display:inline;
+        margin-left:1.5rem;
+        text-align:center;
+        width:400px;
+      }
+      .form-inline {
+       display: -ms-flexbox;
+       display: inline-flex;
+       -ms-flex-flow: row wrap;
+       flex-flow: row wrap;
+       -ms-flex-align: center;
+       align-items: center;
+       align-content: center;
+       justify-content: center;
+       flex-direction: row;
+       flex-wrap: nowrap;
+      }
+      .dropdown-menu{
+        transition: all 0.3s ease 0s;
       }
       .dropdown:hover>.dropdown-menu{
           display:block;
@@ -51,7 +71,7 @@
     </script>
 </head>
 <body id="boddy">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light d-flex">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'store' %}"> <img id="brand" src="{% static 'images/zap.png' %}" alt="logo"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
@@ -63,7 +83,7 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Home</a>
               </li>
               
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown dropp">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Categories
                 </a>
@@ -75,33 +95,36 @@
                   <li><a class="dropdown-item" href="{% url 'viewall' %}">View All</a></li>
                 </ul>
               </li>
-              <li><a class="nav-link" aria-current="page" href="#">Exchange Zone</a>
+              <li><a class="nav-link" aria-current="page" href="#">ExchangeZone</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
+                <a class="nav-link" href="#">ContactUs</a>
               </li>
               
             </ul>
-            <form class="d-flex search-size">
+            <div class="cotainer-fluid">
+               <form class="me-2 search-size" action="{% url 'search' %}" method="POST">
+               {% csrf_token %}
             
-              <input class="form-control me-2 search-size" name="query" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-              </button>
-              
-            </form>
-            <div class="form-inline my-2 my-lg-0 ml-auto">
-                  <a href="#"class="btn btn-primary add-btn" style="margin-right:10px;">Register</a>
+                <input class="form-control me-2 search-size"  name="query" type="text" placeholder="Search for products..." aria-label="Search"><button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-search"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg> Search
+                  </button>
+              </form> 
+              </div>
+                <div class="form-inline my-2 my-lg-0 ml-auto nav-item">
+                  <a href="#"class="btn btn-primary add-btn" style="margin-right:10px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>Register</a>
+                  
 
-                       <a href="#"class="btn btn-success add-btn">Login</a>
-                        
-                       <a href="{% url 'cart' %}">
-                         <img  id="cart-icon" src="{% static 'images/cart.png' %}">
-                       </a>
-                      <p id="cart-total">{{cartItems}} </p>
-               
-            </div>
+                  <a href="#"class="btn btn-success add-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+                    <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      </svg> Login</a>
+                        <a href="{% url 'cart' %}">
+                         <img  id="cart-icon" src="{% static 'images/cart.png' %}"></a><p id="cart-total">{{cartItems}} </p>
+                 </div>
+            
           </div>
         </div>
       </nav>
@@ -122,12 +145,12 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
-            <h6>About</h6>
+            <h6 style="color:black;">About</h6>
             <p class="text-justify">ZAP is a web based application that will be very useful aid to everyone’s technological needs. Users who would like to exchange or sell any kind of devices can very easily find each other here. This is an e-commerce website with specialized in exchanging products among the users.</p>
           </div>
 
           <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
+            <h6 style="color:black;">Quick Links</h6>
             <ul class="footer-links">
               <li><a href="{% url 'store' %}">Home</a></li>
               <li><a href="#">Contact Us</a></li>
@@ -137,7 +160,7 @@
           </div>
 
           <div class="col-xs-6 col-md-3">
-            <h6>Our Team Members</h6>
+            <h6 style="color:black;">Our Team Members</h6>
             <ul class="footer-links">
               <li>Farhan Hasin Saad</li>
               <li>Mahira Ibnath Joytu</li>

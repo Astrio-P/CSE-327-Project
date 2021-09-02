@@ -13,13 +13,23 @@
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
-<title>All products</title>
+{% if category %}
+    <title>{{ category.name }}</title>
+    <body>
+    <h1>Category: "{{ category.name }}"</h1>
+{% else %}
+    <title>All Products</title>
+    <body>
+    <h1> All Products </h1>
+{% endif %}
+
 </head>
 <body>
+
 <div class="row">
         {% for product in products %}
         <div class="col-lg-4">
-            <div class="box-element product">
+            <div class="box-element product zoom">
                 <div style="text-align:center;"> User Rating <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -29,9 +39,9 @@
                 <img class="thumbnail" src="{{product.imageURL}}">
                 <hr>
                 <h6><strong> {{product.name}} </strong> <h6>
-                <hr>
+                
                 <h4 style="display:inline-block;float:left">{{product.price|floatformat:2}} &#2547;</h4>
-                <button style="display:inline-block;float:right" class="btn btn-outline-secondary add-btn">Add to cart</button>
+                <button data-product={{product.id}} data-action="add" style="display:inline-block;float:right" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
                 <a style="display:inline-block;float:right;margin-right:10px" class="btn btn-outline-success" href="#">View<a>
             </div>
         </div>
