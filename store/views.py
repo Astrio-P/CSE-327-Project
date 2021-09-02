@@ -167,4 +167,4 @@ def searchBar(request):
             return render(request, 'store/searchbar.html', {'products':products, 'query':query,'categorys' :categorys,'cartItems' :cartItems,'count':count})
         else:
             print("No information to show")
-            return render(request, 'store/searchbar.html', {})    
+            return render(request, 'store/searchbar.html', {'categorys' :categorys,'cartItems' :cartItems})    
