@@ -17,7 +17,7 @@ def viewall(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
+            customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email)
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -55,7 +55,7 @@ def store(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email) 
+            customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email) 
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -82,7 +82,7 @@ def cart(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-        customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
+        customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.getCartItems
@@ -103,7 +103,7 @@ def checkout(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-        customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
+        customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.getCartItems
@@ -130,7 +130,7 @@ def updateItem(request):
     print('Action:' ,action)
     print('Product:', productId)
 
-    customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
+    customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email)
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     
@@ -161,7 +161,7 @@ def processOrder(request):
      data = json.loads(request.body)
 
      if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         total = float(data['form']['total'])
         order.transaction_id = transaction_id
@@ -192,7 +192,7 @@ def searchBar(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
+            customer, created = Customer.objects.get_or_create(name=request.user.username, email=request.user.email)
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -223,6 +223,13 @@ def searchBar(request):
 
 
 def registerPage(request):
+    """
+    This method is used to view the registration page.
+    :param request: it's a HttpResponse from user.
+    :type request: HttpResponse.
+    :return: this method returns a search page which is a HTML page.
+    :rtype: HttpResponse.
+    """
     if request.user.is_authenticated:
         return redirect ('store')
     
@@ -242,6 +249,13 @@ def registerPage(request):
         return render(request, 'store/register.html', context)
 
 def loginPage(request):
+    """
+    This method is used to view the login page.
+    :param request: it's a HttpResponse from user.
+    :type request: HttpResponse.
+    :return: this method returns a search page which is a HTML page.
+    :rtype: HttpResponse.
+    """
     if request.user.is_authenticated:
         return redirect('store')
     else:
@@ -262,5 +276,12 @@ def loginPage(request):
     return render(request, 'store/login.html', context)
 
 def logoutUser(request):
+    """
+    This method is used to logout the user and redirect them to the login page.
+    :param request: it's a HttpResponse from user.
+    :type request: HttpResponse.
+    :return: this method returns a search page which is a HTML page.
+    :rtype: HttpResponse.
+    """
     logout(request)
     return redirect('login')

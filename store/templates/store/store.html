@@ -74,7 +74,7 @@
   <div class="card-body">
     <h5 class="card-title">Total {{ productCount }} Products</h5>
     <p class="card-text">Zap currently has {{ productCount }} products in total and adding new products everyday</p>
-    <a href="#" class="btn btn-primary add-btn">View All Products</a>
+    <a href="{% url 'viewall' %}" class="btn btn-primary add-btn">View All Products</a>
   </div>
 </div>
 <div class="card" style="width: 18rem;">
@@ -82,7 +82,7 @@
   <div class="card-body">
     <h5 class="card-title">Total {{ customerCount }} Registered Users</h5>
     <p class="card-text">Total of {{ customerCount }} people have joined with us.</p>
-    <a href="#" class="btn btn-success add-btn">Click here to sign up now</a>
+    <a href="{% url 'register' %}" class="btn btn-success add-btn">Click here to sign up now</a>
   </div>
 </div>
 </div>
