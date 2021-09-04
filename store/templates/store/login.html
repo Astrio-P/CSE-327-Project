@@ -14,13 +14,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background-image:url(https://www.patternpictures.com/wp-content/uploads/Kristal-subtle-glass-white-background-pattern-patternpictures-0220-1500x1000.png) !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background-color:#cccccc;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -34,11 +34,12 @@
 		}
 
 		.form_container {
+			border-radius: 50px;
 			margin-top: 20px;
 		}
 
 		#form-title{
-			color: #fff;
+			color: black;
 			
 		}
 
@@ -46,6 +47,7 @@
 			width: 100%;
 			background: #33ccff !important;
 			color: white !important;
+			border-radius: 50px;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
@@ -107,7 +109,7 @@
 
 				</div>
                 {% for message in messages %}
-                <p>{{message}}</p>
+                <p id="messages">{{message}}</p>
                 {% endfor %}
 		
 				<div class="mt-4">

@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 import json
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 def viewall(request):
     """
@@ -12,7 +16,7 @@ def viewall(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer = request.user.customer
+            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -42,7 +46,7 @@ def store(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer = request.user.customer
+            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email) 
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -65,7 +69,7 @@ def cart(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.getCartItems
@@ -86,7 +90,7 @@ def checkout(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.getCartItems
@@ -113,7 +117,7 @@ def updateItem(request):
     print('Action:' ,action)
     print('Product:', productId)
 
-    customer = request.user.customer
+    customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     
@@ -141,7 +145,7 @@ def searchBar(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer = request.user.customer
+            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -169,10 +173,7 @@ def searchBar(request):
             print("No information to show")
             return render(request, 'store/searchbar.html', {'categorys' :categorys,'cartItems' :cartItems})    
 
-from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+
 
 def registerPage(request):
     if request.user.is_authenticated:
