@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+import datetime
 from .models import *
 
 def viewall(request):
@@ -82,7 +83,7 @@ def cart(request):
         order = {'getCartTotal':0,'getCartItems':0}
         cartItems = order['getCartItems']
     categorys = Category.objects.all()
-    context={'items': items, 'order': order, 'cartItems' :cartItems,'categorys' :categorys}
+    context={'items': items, 'order': order, 'cartItems' :cartItems,'categorys' :categorys,}
     return render(request, 'store/cart.html', context)
     
 def checkout(request):
@@ -103,7 +104,7 @@ def checkout(request):
         order = {'getCartTotal':0,'getCartItems':0}
         cartItems = order['getCartItems']
     categorys = Category.objects.all()
-    context={'items':items, 'order':order,'categorys' :categorys,'cartItems' :cartItems}
+    context={'items':items, 'order':order,'categorys' :categorys,'cartItems' :cartItems, 'shipping':False}
     return render(request, 'store/checkout.html', context)
     
 def updateItem(request):
@@ -139,6 +140,33 @@ def updateItem(request):
     if action == 'delete':
         orderItem.delete()
     return JsonResponse('Item was added', safe=False)
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+
+        if total == order.getCartTotal:
+            order.complete = True
+        order.save()
+        if order.shipping == True:
+            ShippingAddress.objects.create(
+                customer=customer,
+                order=order,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                state=data['shipping']['state'],
+                zipcode=data['shipping']['zipcode'],
+
+            )
+    else:
+        print('Not logged in')
+    return JsonResponse('Payment complete!', safe=False)
 
 def searchBar(request):
     """

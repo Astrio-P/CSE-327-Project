@@ -8,4 +8,8 @@ urlpatterns = [
     path('viewall/', views.viewall, name="viewall"),
     path('update_item/', views.updateItem, name="update_item"),
     path('search/', views.searchBar, name="search"),
+    
+    
+    
+    path('process_order/', views.processOrder, name="process_order"),
 ]
