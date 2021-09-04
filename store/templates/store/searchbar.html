@@ -8,10 +8,11 @@
 <body>
     {% if query %}
         <h1>You searched for: "{{ query }}"</h1>
-        <p>Total "{{ count }}" matches found.</p>
+        <h5 style="text-align:center;">Total <strong>"{{ count }}"</strong> matches found.</h5>
     {% else %}
         <h1>You didn't search for anything. </h1>
     {% endif %}
+    
 <div class="row">
         
         {% if products %}
