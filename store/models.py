@@ -13,6 +13,7 @@ class Customer(models.Model):
     This class is used to create objects for database entry
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, default=True)
     name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
 

@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse
 import json
 import datetime
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 def viewall(request):
     """
@@ -13,7 +17,7 @@ def viewall(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer = request.user.customer
+            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -51,7 +55,7 @@ def store(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer = request.user.customer
+            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email) 
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -78,7 +82,7 @@ def cart(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.getCartItems
@@ -99,7 +103,7 @@ def checkout(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.getCartItems
@@ -126,7 +130,7 @@ def updateItem(request):
     print('Action:' ,action)
     print('Product:', productId)
 
-    customer = request.user.customer
+    customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     
@@ -188,7 +192,7 @@ def searchBar(request):
     :rtype: HttpResponse.
     """
     if request.user.is_authenticated:
-            customer = request.user.customer
+            customer, created = Customer.objects.get_or_create(id=request.user.id, name=request.user.username, email=request.user.email)
             order, created = Order.objects.get_or_create(customer=customer, complete=False)
             items = order.orderitem_set.all()
             cartItems = order.getCartItems
@@ -215,3 +219,48 @@ def searchBar(request):
         else:
             print("No information to show")
             return render(request, 'store/searchbar.html', {'categorys' :categorys,'cartItems' :cartItems})    
+
+
+
+def registerPage(request):
+    if request.user.is_authenticated:
+        return redirect ('store')
+    
+    else:
+        form= CreateUserForm()
+         
+        if request.method == 'POST' :
+            form= CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user= form.cleaned_data.get('username')
+                messages.success(request, 'Account created successfully. Please login to continue ' + user)
+                
+                return redirect('login')
+                
+        context= {'form': form}
+        return render(request, 'store/register.html', context)
+
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('store')
+    else:
+          if request.method == 'POST':
+              username =request.POST.get('username')
+              password =request.POST.get('password')
+             
+              user= authenticate(request, username=username, password=password)
+
+              if user is not None:
+                  login(request, user)
+                  return redirect('store')
+              else:
+                  messages.info(request, 'Username or Password is incorrect')
+            
+
+    context= {}
+    return render(request, 'store/login.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
