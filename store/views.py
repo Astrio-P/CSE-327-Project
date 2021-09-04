@@ -28,6 +28,14 @@ def viewall(request):
     else:
          products = Product.objects.filter(category__name=category)
 
+    if request.method == 'POST':
+        sort = request.POST['sorter']
+        if sort=="price-high":
+            products = Product.objects.all().order_by('-price')
+        elif sort=="price-low":
+            products = Product.objects.all().order_by('price')
+        elif sort=="latest":
+            products = Product.objects.all().order_by('id')
          
     categorys = Category.objects.all()
     context={'products' :products,'categorys' :categorys,'cartItems' :cartItems, 'category':category}

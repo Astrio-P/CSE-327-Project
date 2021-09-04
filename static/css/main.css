@@ -140,3 +140,7 @@ h1,h2,h3,h4,h5,h6{
 	-webkit-transform: translateY(-15px);
 	transform: translateY(-15px);
   }
+.sorter{
+	display: flow-root;
+    float: right;
+}
