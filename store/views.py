@@ -62,7 +62,11 @@ def store(request):
 
     products = Product.objects.all()
     categorys = Category.objects.all()
-    context={'products' :products,'categorys' :categorys,'cartItems' :cartItems}
+    categoryCount = categorys.count()
+    productCount = products.count()
+    customers = Customer.objects.all()
+    customerCount = customers.count()
+    context={'products' :products,'categorys' :categorys,'cartItems' :cartItems, 'categoryCount':categoryCount, 'productCount':productCount, 'customerCount':customerCount}
     return render(request, 'store/store.html', context)
 
 def cart(request):
@@ -142,10 +146,17 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 def processOrder(request):
-    transaction_id = datetime.datetime.now().timestamp()
-    data = json.loads(request.body)
+     """
+    This method is used to process all the products and complete transaction in checkout page.
+    :param request: it's a HttpResponse from user.
+    :type request: HttpResponse.
+    :return: this method returns a search page which is a HTML page.
+    :rtype: JsonResponse.
+    """
+     transaction_id = datetime.datetime.now().timestamp()
+     data = json.loads(request.body)
 
-    if request.user.is_authenticated:
+     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         total = float(data['form']['total'])
@@ -164,9 +175,9 @@ def processOrder(request):
                 zipcode=data['shipping']['zipcode'],
 
             )
-    else:
+     else:
         print('Not logged in')
-    return JsonResponse('Payment complete!', safe=False)
+     return JsonResponse('Payment complete!', safe=False)
 
 def searchBar(request):
     """
@@ -198,7 +209,7 @@ def searchBar(request):
     if request.method == 'POST':
         query = request.POST['query']
         if query:
-            products = Product.objects.filter(name__icontains=query) | Product.objects.filter(price__icontains=query) | Product.objects.filter(category__name__icontains=query)
+            products = Product.objects.filter(name__icontains=query) | Product.objects.filter(price__icontains=query)
             count = products.count()
             return render(request, 'store/searchbar.html', {'products':products, 'query':query,'categorys' :categorys,'cartItems' :cartItems,'count':count})
         else:

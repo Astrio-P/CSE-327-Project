@@ -63,8 +63,8 @@
     <div class="card" style="width: 18rem;">
   <img src="{% static 'images/category.png' %}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Total 3 Categories</h5>
-    <p class="card-text">Zap has 3 different categories</p>
+    <h5 class="card-title">Total {{ categoryCount }} Categories</h5>
+    <p class="card-text">Zap has {{ categoryCount }} different categories</p>
     <a href="#" class="btn btn-primary add-btn"> Suggest us more!</a>
     
   </div>
@@ -72,16 +72,16 @@
 <div class="card" style="width: 18rem;">
   <img src="{% static 'images/products.webp' %}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Total 5 Products</h5>
-    <p class="card-text">Zap currently has 5 products in total and adding new products everyday</p>
+    <h5 class="card-title">Total {{ productCount }} Products</h5>
+    <p class="card-text">Zap currently has {{ productCount }} products in total and adding new products everyday</p>
     <a href="#" class="btn btn-primary add-btn">View All Products</a>
   </div>
 </div>
 <div class="card" style="width: 18rem;">
   <img src="{% static 'images/user.png' %}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Total 2 Registered Users</h5>
-    <p class="card-text">Total of two people have joined with us.</p>
+    <h5 class="card-title">Total {{ customerCount }} Registered Users</h5>
+    <p class="card-text">Total of {{ customerCount }} people have joined with us.</p>
     <a href="#" class="btn btn-success add-btn">Click here to sign up now</a>
   </div>
 </div>
