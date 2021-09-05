@@ -81,7 +81,9 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>This class is used to create Categories of the product. It has only one field “Name” and it 
 and each object has it’s own assigned id from django.</p>
-<p>this class is used to create objects for database entry</p>
+<p>This class is extended from the Model class so it has all the functionality
+of the model class.</p>
+<p>this class is used to create objects for database entry has only one field called ‘name’</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="store.models.Category.DoesNotExist">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#store.models.Category.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -135,7 +137,9 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.models.</span></span><span class="sig-name descname"><span class="pre">Customer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.models.Customer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>This class is used to create the Customers/Users.</p>
-<p>this class is used to create objects for database entry</p>
+<p>This class is extended from the Model class so it has all the functionality
+of the model class.</p>
+<p>This class is used to create objects for database entry</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="store.models.Customer.DoesNotExist">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#store.models.Customer.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -228,7 +232,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.models.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.models.Order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>This class is used to create Orders per user/customer. It has customer as it’s foreign key.</p>
-<p>this class is used to create objects for database entry</p>
+<p>this class is used to create objects for database entry has fields named customer,date_ordered,complete,transaction_id</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="store.models.Order.DoesNotExist">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#store.models.Order.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -276,7 +280,10 @@ object the first time, the query is executed.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="store.models.Order.getCartItems">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">getCartItems</span></span><a class="headerlink" href="#store.models.Order.getCartItems" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This Function is to get the number of items that are added in the cart by the user
+:param: self
+:return: ‘total’ number of items in the cart</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="store.models.Order.getCartTotal">
@@ -327,6 +334,11 @@ many-to-one relation.</p>
 class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="store.models.Order.shipping">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">shipping</span></span><a class="headerlink" href="#store.models.Order.shipping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="store.models.Order.shippingaddress_set">
 <span class="sig-name descname"><span class="pre">shippingaddress_set</span></span><a class="headerlink" href="#store.models.Order.shippingaddress_set" title="Permalink to this definition">¶</a></dt>
@@ -356,6 +368,8 @@ object the first time, the query is executed.</p>
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.models.</span></span><span class="sig-name descname"><span class="pre">OrderItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.models.OrderItem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>This class is used to create The order list. It has product and order as it’s foreign key</p>
+<p>This class is extended from the Model class so it has all the functionality
+of the model class.</p>
 <p>this class is used to create objects for database entry</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="store.models.OrderItem.DoesNotExist">
@@ -379,7 +393,10 @@ object the first time, the query is executed.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="store.models.OrderItem.getTotal">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">getTotal</span></span><a class="headerlink" href="#store.models.OrderItem.getTotal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This Function is to get the total bill of each individual items that are added in the cart by the user regarding their quantity
+:param: self
+:return: ‘total’ amount of money to be charged for the purchase</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="store.models.OrderItem.get_next_by_date_added">
@@ -452,8 +469,10 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="store.models.Product">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.models.</span></span><span class="sig-name descname"><span class="pre">Product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.models.Product" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
-<p>This class is used to create items or products</p>
-<p>this class is used to create objects for database entry</p>
+<p>This class is used to create items or products.</p>
+<p>This class is extended from the Model class so it has all the functionality
+of the model class.</p>
+<p>this class is used to create objects for database entry has fields called name,price,digital(Shipping needed or not),image(Picture of the products),category</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="store.models.Product.DoesNotExist">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#store.models.Product.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -508,7 +527,10 @@ assigning the width/height to the width_field/height_field, if appropriate.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="store.models.Product.imageURL">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">imageURL</span></span><a class="headerlink" href="#store.models.Product.imageURL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This Function is to fetch the respective product image without gettting an error
+:param: self
+:return: url</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="store.models.Product.name">
@@ -551,6 +573,8 @@ object the first time, the query is executed.</p>
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.models.</span></span><span class="sig-name descname"><span class="pre">ShippingAddress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.models.ShippingAddress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
 <p>This class is used to store the shipping address inputted by the user after checkout</p>
+<p>This class is extended from the Model class so it has all the functionality
+of the model class.</p>
 <p>this class is used to create objects for database entry</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="store.models.ShippingAddress.DoesNotExist">
@@ -662,6 +686,126 @@ object the first time, the query is executed.</p>
 </section>
 <section id="module-store.tests">
 <span id="store-tests-module"></span><h2>store.tests module<a class="headerlink" href="#module-store.tests" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="store.tests.TestModels">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.tests.</span></span><span class="sig-name descname"><span class="pre">TestModels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestModels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestModels.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestModels.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestModels.test_Category">
+<span class="sig-name descname"><span class="pre">test_Category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestModels.test_Category" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestModels.test_Customer">
+<span class="sig-name descname"><span class="pre">test_Customer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestModels.test_Customer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="store.tests.TestUrls">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.tests.</span></span><span class="sig-name descname"><span class="pre">TestUrls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.SimpleTestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_cart_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_cart_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_cart_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_checkout_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_checkout_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_checkout_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_login_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_login_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_login_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_logout_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_logout_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_logout_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_process_order_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_process_order_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_process_order_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_register_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_register_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_register_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_search_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_search_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_search_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_store_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_store_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_store_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_update_item_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_update_item_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_update_item_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestUrls.test_viewall_url_is_resolved">
+<span class="sig-name descname"><span class="pre">test_viewall_url_is_resolved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestUrls.test_viewall_url_is_resolved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="store.tests.TestViews">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">store.tests.</span></span><span class="sig-name descname"><span class="pre">TestViews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.test_cart_GET">
+<span class="sig-name descname"><span class="pre">test_cart_GET</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.test_cart_GET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.test_checkout_GET">
+<span class="sig-name descname"><span class="pre">test_checkout_GET</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.test_checkout_GET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.test_login_POST">
+<span class="sig-name descname"><span class="pre">test_login_POST</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.test_login_POST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.test_register_POST">
+<span class="sig-name descname"><span class="pre">test_register_POST</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.test_register_POST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.test_store_GET">
+<span class="sig-name descname"><span class="pre">test_store_GET</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.test_store_GET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="store.tests.TestViews.test_viewall_GET">
+<span class="sig-name descname"><span class="pre">test_viewall_GET</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#store.tests.TestViews.test_viewall_GET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-store.urls">
 <span id="store-urls-module"></span><h2>store.urls module<a class="headerlink" href="#module-store.urls" title="Permalink to this headline">¶</a></h2>
@@ -671,27 +815,102 @@ object the first time, the query is executed.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="store.views.cart">
 <span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">cart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.cart" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method is used to display products that were added in the shopping cart in cart page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a cart page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="store.views.checkout">
 <span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">checkout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.checkout" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method is used to calculate and display the amount and products that is being purchased in checkout page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a checkout page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="store.views.loginPage">
+<span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">loginPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.loginPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to view the login page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a search page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="store.views.logoutUser">
+<span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">logoutUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.logoutUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to logout the user and redirect them to the login page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a search page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="store.views.processOrder">
+<span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">processOrder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.processOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to process all the products and complete transaction in checkout page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a search page which is a HTML page.
+:rtype: JsonResponse.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="store.views.registerPage">
+<span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">registerPage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.registerPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to view the registration page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a search page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="store.views.searchBar">
+<span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">searchBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.searchBar" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to display all the products matching with the searh query in search page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a search page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="store.views.store">
 <span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.store" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method is used to display all the products,category list, cart information in homepage page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns a store page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="store.views.updateItem">
 <span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">updateItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.updateItem" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method is used to add products to the shopping cart.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method adds item to the cart and refreshes the HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="store.views.viewall">
 <span class="sig-prename descclassname"><span class="pre">store.views.</span></span><span class="sig-name descname"><span class="pre">viewall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#store.views.viewall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method is used to display all the products in viewall page.
+:param request: it’s a HttpResponse from user.
+:type request: HttpResponse.
+:return: this method returns viewall page which is a HTML page.
+:rtype: HttpResponse.</p>
+</dd></dl>
 
 </section>
 <section id="module-store">
