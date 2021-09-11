@@ -4,7 +4,7 @@ import json
 import datetime
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
+from .forms import CreateUserForm, SuggestionForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
@@ -220,8 +220,6 @@ def searchBar(request):
             print("No information to show")
             return render(request, 'store/searchbar.html', {'categorys' :categorys,'cartItems' :cartItems})    
 
-
-
 def registerPage(request):
     """
     This method is used to view the registration page.
@@ -285,3 +283,29 @@ def logoutUser(request):
     """
     logout(request)
     return redirect('login')
+
+def support(request):
+    """
+    This method is used to view the supoort page.
+    :param request: it's a HttpResponse from user.
+    :type request: HttpResponse.
+    :return: this method returns a search page which is a HTML page.
+    :rtype: HttpResponse.
+    """
+
+    if request.method == 'POST':
+        # data = request.body
+        data = request.POST.dict()
+
+        first_name = data['first_name']
+        last_name = data['last_name']
+        email = data['email']
+        message = data['message']
+        form = SuggestionForm(request.POST)  
+
+        if form.is_valid():
+            suggestion, created = Suggestions.objects.get_or_create(first_name=first_name, last_name=last_name, email=email, message=message)
+            suggestion.save()   
+        
+    return render(request, 'store/support.html')
+        
